@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  yolov7:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    runtime: nvidia
+    tty: true
+    user: $DOCKER_USER
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - ../:/workdir
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    shm_size: "60g"
